@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_search"
+            android:icon="@drawable/bluetooth"
+            android:title="扫描蓝牙设备"/>
+
+        <item
+            android:id="@+id/nav_test"
+            android:icon="@drawable/mark"
+            android:title="进入测试界面"/>
+
+        <item
+            android:id="@+id/nav_data"
+            android:icon="@drawable/chart"
+            android:title="显示数据"/>
+
+        <item
+            android:id="@+id/nav_exit"
+            android:icon="@drawable/close"
+            android:title="退出"/>
+
+    </group>
+</menu>

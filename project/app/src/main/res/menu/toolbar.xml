@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/bluetooth_request"
+        android:icon="@drawable/bluetooth_disabled"
+        android:title="开启蓝牙"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/search_bluetooth"
+        android:icon="@drawable/bluetooth"
+        android:title="扫描附近蓝牙设备"
+        app:showAsAction="never"/>
+
+</menu>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/data_show"
+        android:icon="@drawable/chart"
+        android:title="查看数据"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/back"
+        android:icon="@drawable/back"
+        android:title="后退"
+        app:showAsAction="always"/>
+
+</menu>

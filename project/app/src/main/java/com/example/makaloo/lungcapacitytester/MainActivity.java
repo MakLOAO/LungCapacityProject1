@@ -43,6 +43,8 @@ import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
 
+    static String tableName;
+
     //蓝牙管理类
     private BluetoothAdapter btAdapter;
     private BluetoothDevice btDevice;
@@ -205,20 +207,20 @@ public class MainActivity extends AppCompatActivity {
         registerReceiver(btConnectReceiver, connectIntentFilter);
 
         //蓝牙断开连接时尝试启动TryToConnect线程重连
-        btDisconnectReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                isConnect = false;
-                if (!isConnect) {
-                    textView.setText("连接断开，请检查蓝牙设备");
-                }
-                new TryToConnect().start();
-            }
-        };
+//        btDisconnectReceiver = new BroadcastReceiver() {
+//            @Override
+//            public void onReceive(Context context, Intent intent) {
+//                isConnect = false;
+//                if (!isConnect) {
+//                    textView.setText("连接断开，请检查蓝牙设备");
+//                }
+//                new TryToConnect().start();
+//            }
+//        };
 
-        disconnectIntentFilter = new IntentFilter(
-                BluetoothDevice.ACTION_ACL_DISCONNECTED);
-        registerReceiver(btDisconnectReceiver, disconnectIntentFilter);
+//        disconnectIntentFilter = new IntentFilter(
+//                BluetoothDevice.ACTION_ACL_DISCONNECTED);
+//        registerReceiver(btDisconnectReceiver, disconnectIntentFilter);
     }
 
     @Override

@@ -4,7 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.makaloo.lungcapacitytester.ShowActivity">
+
+    <android.support.v7.widget.SearchView
+        android:id="@+id/searchview"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        app:iconifiedByDefault="false"
+        app:queryHint="请输入关键字"
+        android:textColor="#000000"/>
 
     <ListView
         android:id="@+id/list_view"

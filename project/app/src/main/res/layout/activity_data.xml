@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="com.example.makaloo.lungcapacitytester.DataActivity">
 
     <TextView
-        android:id="@+id/name"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    android:id="@+id/name"
+    android:layout_marginLeft="40dp"
+    android:layout_marginTop="10dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
 
     <LinearLayout
-        android:layout_marginTop="10dp"
+        android:id="@+id/tb1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ListView
-            android:id="@+id/show_data2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-        </ListView>
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_navigation_bar1"
+        android:layout_below="@id/name"
+        android:orientation="horizontal">
 
     </LinearLayout>
 
+    <com.ashokvarma.bottomnavigation.BottomNavigationBar
+        android:id="@+id/bottom_navigation_bar1"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"/>
 
-</LinearLayout>
+
+</RelativeLayout>

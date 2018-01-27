@@ -61,11 +61,11 @@ public class Chart2Fragment extends Fragment {
 //        tv.setText(agrs1);
         mBarChart = (BarChart) view.findViewById(R.id.chart2);
         mBarChart.getAxisRight().setEnabled(true);
-        mBarChart.setNoDataText("no data!");
         mBarChart.setBackgroundColor(Color.WHITE);
         mBarChart.getDescription().setEnabled(false);
         mBarChart.setDrawBarShadow(false);
         mBarChart.setDrawValueAboveBar(true);
+        mBarChart.setNoDataText("no data!");
         Legend legend = mBarChart.getLegend();
         legend.setTextColor(Color.BLACK);
         legend.setTextSize(10);
@@ -80,7 +80,7 @@ public class Chart2Fragment extends Fragment {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         try {
             int entryNum = 0;
-            Cursor cursor = db.rawQuery("SELECT * FROM tester", null);
+            Cursor cursor = db.rawQuery("SELECT * FROM "+ MainActivity.tableName, null);
             if (cursor.moveToFirst()) {
                 do {
                     String time = cursor.getString(cursor.getColumnIndex("test_time"));

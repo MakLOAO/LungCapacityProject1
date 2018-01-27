@@ -83,7 +83,7 @@ public class Chart1Fragment extends Fragment {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         try {
             int entryNum = 0;
-            Cursor cursor = db.rawQuery("SELECT * FROM " + HomeFragment.tableName, null);
+            Cursor cursor = db.rawQuery("SELECT * FROM " + MainActivity.tableName, null);
             if (cursor.moveToFirst()) {
                 do {
                     String time = cursor.getString(cursor.getColumnIndex("test_time"));

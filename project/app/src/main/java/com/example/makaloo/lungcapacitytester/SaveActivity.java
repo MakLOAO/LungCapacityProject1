@@ -16,8 +16,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
@@ -27,7 +29,7 @@ public class SaveActivity extends AppCompatActivity implements BottomNavigationB
     private DrawerLayout mDrawerLayout;
 
     private BottomNavigationBar bottomNavigationBar;
-    int lastSelectedPosition = 0;
+    private int lastSelectedPosition = 0;
     private String TAG = MainActivity.class.getSimpleName();
     private HomeFragment mHomeFragment;
     private Chart1Fragment mChart1Fragment;
@@ -39,6 +41,9 @@ public class SaveActivity extends AppCompatActivity implements BottomNavigationB
         setContentView(R.layout.activity_save);
         NavigationView navView = (NavigationView) findViewById(R.id.nav_view2);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout2);
+        Toolbar toolbar1 = (Toolbar) findViewById(R.id.toolbar1);
+        setSupportActionBar(toolbar1);
+        setSupportActionBar(toolbar1);
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar2);
 //        setSupportActionBar(toolbar);
 //        ActionBar actionBar = getSupportActionBar();
@@ -94,8 +99,8 @@ public class SaveActivity extends AppCompatActivity implements BottomNavigationB
         /** 添加导航按钮 */
         bottomNavigationBar
                 .addItem(new BottomNavigationItem(R.drawable.home, "首页"))
-                .addItem(new BottomNavigationItem(R.drawable.chart1, "柱状图"))
                 .addItem(new BottomNavigationItem(R.drawable.chart2, "折线图"))
+                .addItem(new BottomNavigationItem(R.drawable.chart1, "柱形图"))
                 .setFirstSelectedPosition(lastSelectedPosition)
                 .initialise(); //initialise 一定要放在 所有设置的最后一项
 
@@ -181,30 +186,27 @@ public class SaveActivity extends AppCompatActivity implements BottomNavigationB
 
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.toobar2, menu);
-//        return super.onCreateOptionsMenu(menu);
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()){
-//            case R.id.data_show:
-//                Intent intent = new Intent(SaveActivity.this,ShowActivity.class);
-//                startActivity(intent);
-//                break;
-//            case R.id.back:
-//                finish();
-//                break;
-//            case android.R.id.home:
-//                mDrawerLayout.openDrawer(GravityCompat.START);
-//                break;
-//            default:
-//                break;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toobar2, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.data_show:
+                Intent intent = new Intent(SaveActivity.this,ShowActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.back:
+                finish();
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
 
 

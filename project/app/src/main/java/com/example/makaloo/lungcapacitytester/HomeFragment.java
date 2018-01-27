@@ -33,8 +33,9 @@ public class HomeFragment extends Fragment {
     private EditText etTableName;
     private StringBuilder sb;
     private MyDatabaseHelper dbHelper;
+    private String[] dataList;
 
-    static String tableName;
+    //static String tableName;
 
     private Context context;
 
@@ -108,25 +109,23 @@ public class HomeFragment extends Fragment {
         btEnter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tableName = etTableName.getText().toString();
+                MainActivity.tableName = etTableName.getText().toString();
                 new AlertDialog.Builder(context)
-                        .setTitle("确定受测者姓名：" + tableName)
+                        .setTitle("确定受测者姓名：" + MainActivity.tableName)
                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                tvShowName.setText(tableName);
+                                tvShowName.setText(MainActivity.tableName);
                                 SQLiteDatabase db = dbHelper.getWritableDatabase();
                                 try {
                                     String createSQL = "CREATE TABLE "
-                                            + tableName
+                                            + MainActivity.tableName
                                             + " (id integer primary key autoincrement,"
                                             + "test_time TIMESTAMP default CURRENT_TIMESTAMP,"
                                             + "capacity text)";
                                     db.execSQL(createSQL);
-                                    Toast.makeText(context,"创建新表，开始测试",Toast.LENGTH_SHORT).show();
                                 } catch (Exception e){
                                     e.printStackTrace();
-                                    Toast.makeText(context,"表已存在，开始测试",Toast.LENGTH_SHORT).show();
                                 }
                             }
                         })
@@ -145,8 +144,8 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 SQLiteDatabase db = dbHelper.getWritableDatabase();
                 try {
-                    //String addSQL = "INSERT INTO " + tableName + " (capacity) values ('aha')";
-                    String addSQL = "INSERT INTO " + tableName + " (capacity) values ('" + tvShowData.getText().toString() + "')";
+                    //String addSQL = "INSERT INTO " + MainActivity.tableName + " (capacity) values ('aha')";
+                    String addSQL = "INSERT INTO " + MainActivity.tableName + " (capacity) values ('" + tvShowData.getText().toString() + "')";
                     db.execSQL(addSQL);
                     Toast.makeText(context,"保存成功",Toast.LENGTH_SHORT).show();
                     tvShowData.setText("");
@@ -181,10 +180,13 @@ public class HomeFragment extends Fragment {
 
     public void show(String msg) {
         sb.append(msg + "\n");
+        dataList = sb.toString().split("\\|");
+        //|是转义字符，要加上\\防转义
+        //要求发送过来的字符串要加个|作为发送结束的标志
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                tvShowData.setText(sb.toString());
+                tvShowData.setText(dataList[dataList.length - 1]);
             }
         });
     }

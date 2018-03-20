@@ -4,13 +4,10 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.BroadcastReceiver;
-import android.content.ClipData;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.database.sqlite.SQLiteDatabase;
-import android.icu.text.UnicodeSetSpanner;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -21,12 +18,9 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -207,20 +201,20 @@ public class MainActivity extends AppCompatActivity {
         registerReceiver(btConnectReceiver, connectIntentFilter);
 
         //蓝牙断开连接时尝试启动TryToConnect线程重连
-//        btDisconnectReceiver = new BroadcastReceiver() {
-//            @Override
-//            public void onReceive(Context context, Intent intent) {
-//                isConnect = false;
-//                if (!isConnect) {
-//                    textView.setText("连接断开，请检查蓝牙设备");
-//                }
-//                new TryToConnect().start();
-//            }
-//        };
+        btDisconnectReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                isConnect = false;
+                if (!isConnect) {
+                    textView.setText("连接断开，请检查蓝牙设备");
+                }
+                new TryToConnect().start();
+            }
+        };
 
-//        disconnectIntentFilter = new IntentFilter(
-//                BluetoothDevice.ACTION_ACL_DISCONNECTED);
-//        registerReceiver(btDisconnectReceiver, disconnectIntentFilter);
+        disconnectIntentFilter = new IntentFilter(
+                BluetoothDevice.ACTION_ACL_DISCONNECTED);
+        registerReceiver(btDisconnectReceiver, disconnectIntentFilter);
     }
 
     @Override
@@ -281,7 +275,6 @@ public class MainActivity extends AppCompatActivity {
                 if (!btAdapter.isEnabled()) {
                     btAdapter.enable();
                     item.setIcon(R.drawable.bluetooth_enabled);
-
                 }
                 if (btAdapter.isEnabled()) {
                     btAdapter.disable();

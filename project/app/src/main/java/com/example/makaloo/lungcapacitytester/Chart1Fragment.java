@@ -38,9 +38,6 @@ public class Chart1Fragment extends Fragment {
 
     public static Chart1Fragment newInstance() {
         Chart1Fragment fragment = new Chart1Fragment();
-//        Bundle args = new Bundle();
-//        args.putString("agrs1", param1); //newInstance(String param1)
-//        fragment.setArguments(args);
         return fragment;
     }
 

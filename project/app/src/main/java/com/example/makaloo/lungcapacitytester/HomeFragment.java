@@ -33,7 +33,7 @@ public class HomeFragment extends Fragment {
     private EditText etTableName;
     private StringBuilder sb;
     private MyDatabaseHelper dbHelper;
-    private String[] dataList;
+    private String[] clockNum;
 
     //static String tableName;
 
@@ -179,16 +179,34 @@ public class HomeFragment extends Fragment {
     }
 
     public void show(String msg) {
-        sb.append(msg + "\n");
-        dataList = sb.toString().split("\\|");
+        sb.append(msg);
+        clockNum = sb.toString().split("A");
         //|是转义字符，要加上\\防转义
         //要求发送过来的字符串要加个|作为发送结束的标志
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                tvShowData.setText(dataList[dataList.length - 1]);
+//                tvShowData.setText(dataList[dataList.length - 1]);
+//                tvShowData.setText(sb);
+                tvShowData.setText(String.valueOf(calData()));
             }
         });
+    }
+
+    private double calData() {
+        double[] clockNumDouble = new double[clockNum.length];
+        double[] flow = new double[clockNum.length];
+        double s = Math.PI * Math.pow(18.5/2, 2);
+        double t = 503.677;
+        double flowAll = 0;
+        for (int i = 0; i < clockNum.length; i++) {
+            clockNumDouble[i] = Double.parseDouble(clockNum[i]);
+            if (clockNumDouble[i] > 18000)
+                clockNumDouble[i] = 36418 - clockNumDouble[i];
+            flow[i] = (72 * Math.pow(10, 10))/(17525.7-clockNumDouble[i]) * s * t;
+            flowAll += flow[i];
+        }
+        return flowAll;
     }
 
     private class ReadThread extends Thread {
